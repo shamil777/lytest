@@ -22,7 +22,7 @@ def load_attribute_fromfile(filename, attr):
         try:
             spec.loader.exec_module(the_module)
         except Exception as err:
-            raise ImportError(f"Error loading {str(testfile.name)}")
+            raise ImportError(f"Error loading {str(filename)}")
         _loaded_modules[modulename] = the_module
     the_module = _loaded_modules[modulename]
     return getattr(the_module, attr)
