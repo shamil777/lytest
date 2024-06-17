@@ -12,9 +12,6 @@ def run_xor_pya(file1, file2, tolerance=1, hash_geom=True, verbose=False):
         hash_geom=True uses phidl's hash_geometry, avoiding a full XOR unless they are different
     """
     from lygadgets import pya
-    if hash_geom or pya is None:
-        run_xor_phidl(file1, file2, tolerance, hash_geom=True, verbose=verbose)
-        return
 
     l1 = pya.Layout()
     l1.read(file1)
@@ -157,8 +154,10 @@ def run_xor(*args, **kwargs):
     file1 = args[0]
     if file1.endswith('.kicad_pcb'):
         run_xor_pcbnew(*args, **kwargs)
-    else:
+    elif file1.endswith(".gds"):
         run_xor_pya(*args, **kwargs)
+    elif file1.endswith(".oas"):
+        run_xor_phidl(*args, **kwargs)
 
 
 if __name__ == "__main__":
