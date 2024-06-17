@@ -22,3 +22,6 @@ build
 
 # Virtual environment
 venv
+
+# pycharm project settings
+/.idea
