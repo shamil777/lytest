@@ -180,7 +180,7 @@ def cm_gitdiff(args):
         return
     for file in [git_args.lyfile1, git_args.lyfile2]:
         if (
-            git_args.mode2 is None or file.name == "/dev/null"
+                git_args.mode2 is None or file.name == "/dev/null"
         ):  # what is this on windows?
             print(
                 f"File {[git_args.lyfile1.name, git_args.lyfile2.name]} does not exist on both commits"
@@ -231,3 +231,7 @@ def cm_gitconfig(args):
     with open(attr_file, "a+") as fx:
         for filetype in ("gds", "GDS", "oas", "OAS", "kicad_pcb"):
             fx.write("*.{}  diff=lytest\n".format(filetype))
+
+
+if __name__ == "__main__":
+    cm_main()
