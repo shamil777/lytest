@@ -73,11 +73,12 @@ def difftest_it(func, file_ext=None):
         if not os.path.exists(ref_file):
             print("Warning reference does not exist. Creating it and an initial test")
             shutil.copyfile(test_file, ref_file)
-        try:
-            run_xor(ref_file, test_file, tolerance=1, hash_geom=True, verbose=False)
-        except GeometryDifference:
-            ipc_load(ref_file, mode=1)
-            ipc_load(test_file, mode=2)
-            raise
+        else:
+            try:
+                run_xor(ref_file, test_file, tolerance=1, hash_geom=True, verbose=False)
+            except GeometryDifference:
+                ipc_load(ref_file, mode=1)
+                ipc_load(test_file, mode=2)
+                raise
 
     return wrapper
